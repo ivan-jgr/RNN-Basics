@@ -89,7 +89,11 @@ def train(model, dataset):
                 print("Epoch: {}/{}, número de batch: {}, loss: {:.4f}, val loss: {:.4f}".format(
                     e + 1, settings.epochs, batch_count, loss.item(), np.mean(val_losses)))
 
-    torch.save(model.state_dict(), './checkpoint/dict_rnn_model.pth')
+    torch.save({
+        'state_dict': model.state_dict(),
+        'chars': model.chars},
+        './checkpoint/dict_rnn_model.pth'
+    )
 
 
 if __name__ == '__main__':
